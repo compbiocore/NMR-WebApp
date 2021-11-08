@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+
+{% block content %}
+    <div class="container">
+        <p>&nbsp;</p>
+        <h1>This page is for processing and analyzing your NMR data.</h1>
+        <p>&nbsp;</p> 
+        <h2>To do so, please enter the following information and upload inputs below:</h2>
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %} 
+            <p>&nbsp;</p>
+            <input type="file" name="myfile" style="color:white" required>
+            <p>&nbsp;</p>
+            <button type="submit">Upload File</button>
+        </form>
+    </div>
+{% endblock %}

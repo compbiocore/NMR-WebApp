@@ -1,0 +1,12 @@
+
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+
+{% block content %}
+    <div class="container">
+        <p>&nbsp;</p>
+        <h2>Currently logged in as: {{user.username}}</h2>
+    <h2>Email: {{user.email}}</h2>
+    </div>
+{% endblock %}

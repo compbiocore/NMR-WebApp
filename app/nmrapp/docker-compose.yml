@@ -1,0 +1,33 @@
+version: '3.8'
+services: 
+  nmrweb: 
+    build: 
+      context: . 
+      dockerfile: Dockerfile 
+    container_name: nmrbase
+    ports: 
+      - 8000:8000
+    volumes: 
+      - .:/app
+    depends_on: 
+      - db 
+
+  db: 
+    image: mysql:5.7.22
+    restart: always 
+    container_name: mysql 
+    environment: 
+      MYSQL_DATABASE: nmrapp
+      MYSQL_USER: root
+      MYSQL_PASSWORD: root
+      MYSQL_ROOT_PASSWORD: root 
+    volumes: 
+      - .dbdata:/var/lib/mysql
+    ports: 
+      - 33066:3306
+
+  nmrdock:
+    image: jlaw2677/nmrdock
+    container_name: nmrdock
+    volumes: 
+      - ./tmp:/input
