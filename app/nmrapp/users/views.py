@@ -36,10 +36,12 @@ def upload(request):
 @login_required()
 def analysis(request):
     if request.method=='POST':
-        uploaded_files = request.FILES["myfile"]
+        uploaded_files = request.FILES["mydata"]
+        uploaded_files2 = request.FILES["myfile"]
         fs =FileSystemStorage()
         fs.save(uploaded_files.name, uploaded_files)
-        messages.success(request, 'Your file has been uploaded!')
+        fs.save(uploaded_files2.name, uploaded_files2)
+        messages.success(request, 'Your files have been uploaded and are being processed!')
         return render(request, 'users/analysis.html')
     else:
         return render(request, 'users/analysis.html')

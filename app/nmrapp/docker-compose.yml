@@ -7,7 +7,7 @@ services:
     container_name: nmrbase
     ports: 
       - 8000:8000
-    volumes: 
+    volumes:
       - .:/app
     depends_on: 
       - db 
@@ -27,7 +27,9 @@ services:
       - 33066:3306
 
   nmrdock:
-    image: jlaw2677/nmrdock
-    container_name: nmrdock
+    image: jlaw2677/nmrdock_update
+    container_name: your_nmr
+    tty: true
+    stdin_open: true
     volumes: 
-      - ./tmp:/input
+      - ./tmp:/inputs
