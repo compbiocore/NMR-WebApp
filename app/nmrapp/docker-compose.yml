@@ -33,3 +33,4 @@ services:
     stdin_open: true
     volumes: 
       - ./tmp:/inputs
+      - ./tmp:/media
