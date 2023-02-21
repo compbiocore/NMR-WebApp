@@ -5,16 +5,15 @@
 {% block content %}
     <div class="container">
         <p>&nbsp;</p>
-        <h1>To upload and store data on this app, please enter your username below 
-            along with a descriptively named .zip file (i.e., compressed folder) containing all your experimental results.
+        <h1>To store data on this app, please upload a descriptively named .zip file (i.e., compressed folder) containing all your experimental results.
         </h1>
         <p>&nbsp;</p> 
         <form method="POST" enctype="multipart/form-data">
             {% csrf_token %} 
-        <label for="username">User name:</label> 
+        <!--<label for="username">User name:</label> 
         <input id="username" type="text" placeholder="Enter Your User Name" name="user_name" required/>
         <p>&nbsp;</p>
-        <!-- <label for="firstname">First name:</label> 
+        <label for="firstname">First name:</label> 
         <input id="firstname" type="text" placeholder="Enter Your First Name" name="first_name" required/>
         <p>&nbsp;</p>
         <label for="lastname">Last name:</label> 

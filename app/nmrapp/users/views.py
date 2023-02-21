@@ -16,6 +16,7 @@ from wsgiref.util import FileWrapper
 import mimetypes
 from django.utils.encoding import smart_str
 from django.contrib.messages import get_messages
+from pathlib import Path
 
 # Navigates user to home page 
 def home(request):
@@ -81,9 +82,9 @@ def analysis(request):
 # Handles file uploads 
 @login_required()
 def Insertrecord(request):
-    if request.method=='POST' and request.POST.get('user_name') and request.FILES['file_upload']: 
+    if request.method=='POST' and request.FILES['file_upload']: 
         saverecord=StorageInsert()
-        saverecord.user_name=request.POST.get('user_name')
+        saverecord.user_name=request.user.username
         #saverecord.first_name=request.POST.get('first_name')
         #saverecord.last_name=request.POST.get('last_name')
         saverecord.folder=request.FILES['file_upload']
@@ -114,9 +115,10 @@ def download_file(request):
 # Serve users their stored data 
 @login_required()
 def serve_file(request):
-    if request.method=='POST' and request.POST.get('filename'):
+    if request.method=='POST' and request.POST.get('user_name') and request.POST.get('filename'):
+        userN=request.POST.get('user_name')
         file_to_retrieve=request.POST.get('filename')
-        dirUpload = f"/app/myusers/{request.user.username}/user_uploaded/"
+        dirUpload = f"/app/myusers/{userN}/user_uploaded/"
         if os.path.isfile(dirUpload + file_to_retrieve):
             file_path = dirUpload + file_to_retrieve
             file_wrapper = FileWrapper(open(file_path,'rb'))
@@ -124,12 +126,12 @@ def serve_file(request):
             response = HttpResponse(file_wrapper, content_type=file_mimetype )
             response['X-Sendfile'] = file_path
             response['Content-Length'] = os.stat(file_path).st_size
-            response['Content-Disposition'] = 'attachment; filename=%s' % smart_str(file_to_retrieve) 
+            response['Content-Disposition'] = 'attachment; filename=%s' % smart_str(file_to_retrieve)
             #zip_file = open(dirUpload, 'rb')
             #return FileResponse(zip_file)
             return response
         else: 
-            messages.error(request, 'File Does Not Exist!')
+            messages.error(request, 'File Does Not Exist! Please check both the username and file name you entered.')
             return render(request, 'users/retrieve.html')
     return render(request, 'users/retrieve.html')
     
