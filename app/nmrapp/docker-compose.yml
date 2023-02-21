@@ -15,6 +15,7 @@ services:
     container_name: your_nmr
     tty: true
     stdin_open: true
+    command: sudo bash /nmr.sh
     volumes: 
       - ./tmp:/inputs
       - ./myusers:/myusers
