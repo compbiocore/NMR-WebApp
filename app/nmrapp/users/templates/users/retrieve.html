@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+
+{% block content %}
+    <div class="container">
+        <p>&nbsp;</p>
+        <h1>This page is for when you want to retrieve data that you have already stored in the application's database. 
+        </h1>
+        <br>
+        <h5 style="color:white;">NOTE: If you forgot the file name for the data that you've stored and wish to retrieve, 
+            please visit the <a href="{% url 'profile' %}">profile</a> page of this website. 
+        </h5>
+        <p>&nbsp;</p>
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %} 
+        <label for="username">User name:</label> 
+        <input id="username" type="text" placeholder="Enter Your User Name" name="user_name" required/>
+        <p>&nbsp;</p>
+        <label for="filename">File name:</label> 
+        <input id="filename" type="text" placeholder="Name of the .zip file" name="filename" required/>
+        <p>&nbsp;</p>
+        <button type="submit">Download File</button>
+        </form>
+        <hr/>
+    </div>
+{% endblock %}

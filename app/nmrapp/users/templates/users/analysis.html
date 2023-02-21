@@ -5,7 +5,7 @@
 {% block content %}
     <div class="container">
         <p>&nbsp;</p>
-        <h1>This page is for processing and analyzing your NMR data.</h1>
+        <h1>This page is for processing and analyzing your NMR data. Once your data are analyzed, results will be ready for download in your web browser.</h1>
         <form method="POST" enctype="multipart/form-data">
             {% csrf_token %} 
             <p>&nbsp;</p>
@@ -15,7 +15,7 @@
             <h5 style="color:white;">Please upload fid.com file:</h5>
             <input type="file" name="myfile" style="color:white" required>
             <p>&nbsp;</p>
-            <button type="submit">Upload Files</button>
+            <button type="submit">Run Analysis</button>
         </form>
     </div>
 {% endblock %}

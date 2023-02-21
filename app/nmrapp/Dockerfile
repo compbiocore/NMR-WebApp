@@ -7,4 +7,5 @@ RUN  pip install -r requirements.txt
 COPY . /app
 RUN chmod +x wait-for-it.sh
 # Expose not needed because that is in docker-compose.yml 
-CMD ["./wait-for-it.sh", "db:3306", "--", "python3", "manage.py", "runserver", "0.0.0.0:8000"]
+#CMD ["./wait-for-it.sh", "db:3306", "--", "python3", "manage.py", "runserver", "0.0.0.0:8000"]
+CMD ["python3", "manage.py", "runserver", "0.0.0.0:8000"]

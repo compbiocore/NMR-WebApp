@@ -242,10 +242,6 @@ text-align:center;
 
 
 
-
-
-
-
 // Remy function
 @function remy($value) {
 @return ($value / 16px) * 1rem;
@@ -391,3 +387,4 @@ color: #999;
   text-decoration: none;
   border-radius: 9px;
 }
+
