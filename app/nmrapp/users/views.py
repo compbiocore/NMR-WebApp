@@ -50,7 +50,7 @@ def profile(request):
     if len(os.listdir(path)) > 0:
         files_list =os.listdir(path)
     else:
-        files_list=["No files found for this user yet"]
+        files_list=["No files have been uploaded by this user yet"]
     return render(request, 'users/profile.html', {'userFiles': files_list})
 
 # Renders the upload page for the user 
