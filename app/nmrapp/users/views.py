@@ -27,10 +27,10 @@ def register(request):
         form = UserRegisterForm(request.POST)
         if form.is_valid():
             form.save()
-            if not os.path.exists(os.path.join('/app/myusers',request.user.username)):
-                os.makedirs(os.path.join('/app/myusers',request.user.username)) 
-                os.makedirs(os.path.join('/app/myusers/',request.user.username, "nmr_web_analyses"))
-                os.makedirs(os.path.join('/app/myusers/',request.user.username, "user_uploaded"))
+            if not os.path.exists(os.path.join('/app/myusers', form.cleaned_data.get('username'))):
+                os.makedirs(os.path.join('/app/myusers', form.cleaned_data.get('username')))
+                os.makedirs(os.path.join('/app/myusers/', form.cleaned_data.get('username'),'/nmr_web_analyses'))
+                os.makedirs(os.path.join('/app/myusers/', form.cleaned_data.get('username'),'/user_uploaded'))
             username = form.cleaned_data.get('username')
             #userrecord=Credentials()
             #userrecord.user=username
